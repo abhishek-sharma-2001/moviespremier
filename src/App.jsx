@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import MovieCard from "./MovieCard";
 import SearchIcon from "./search.svg";
 import "./App.css";
@@ -18,7 +17,20 @@ const App = () => {
     const response = await fetch(`${API_URL}&s=${title}`);
     const data = await response.json();
 
-    setMovies(data.Search);
+    if (data.Search) {
+      // Fetch detailed information for each movie using IMDb ID
+      const detailedMovies = await Promise.all(
+        data.Search.map(async (movie) => {
+          const detailedResponse = await fetch(`${API_URL}&i=${movie.imdbID}`);
+          const detailedData = await detailedResponse.json();
+          return detailedData;
+        })
+      );
+
+      setMovies(detailedMovies);
+    } else {
+      setMovies([]);
+    }
   };
 
   return (
@@ -31,12 +43,11 @@ const App = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search for movies"
           onKeyDown={(e) => {
-            if (e.key === 'Enter') {
+            if (e.key === "Enter") {
               e.preventDefault();
               searchMovies(searchTerm);
             }
           }}
-        
         />
         <img
           src={SearchIcon}
@@ -48,7 +59,7 @@ const App = () => {
       {movies?.length > 0 ? (
         <div className="container">
           {movies.map((movie) => (
-            <MovieCard movie={movie} />
+            <MovieCard key={movie.imdbID} movie={movie} />
           ))}
         </div>
       ) : (

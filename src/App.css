@@ -214,3 +214,124 @@ h1 {
     margin: 1rem;
   }
 }
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.popup-content {
+  background: #1f2123;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  color: #f9d3b4;
+}
+
+.popup h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.popup p {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.popup a {
+  display: block;
+  color: #f9d3b4;
+  text-decoration: none;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.popup button {
+  background: #f9d3b4;
+  color: #212426;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.popup button:hover {
+  background: #e0b88f;
+}
+.popup img {
+  /* Style for the image in the popup */
+  width: 100px;
+  max-height: 300px; /* Adjust the max height as needed */
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.popup h2 {
+  /* Style for the title in the popup */
+  font-size: 24px; /* Adjust the font size as needed */
+}
+
+.popup p {
+  /* Style for the paragraphs in the popup */
+  font-size: 16px; /* Adjust the font size as needed */
+}
+
+.popup span {
+  /* Style for the span element in the popup */
+  font-size: 14px; /* Adjust the font size as needed */
+}
+
+.popup a {
+  /* Style for the link in the popup */
+  font-size: 14px; /* Adjust the font size as needed */
+  color: #fff; /* Text color */
+  background-color: #007bff; /* Button background color */
+  padding: 8px 16px; /* Padding for the button */
+  border-radius: 4px; /* Rounded corners */
+  text-decoration: none; /* Remove underlines */
+  display: inline-block; /* Make it a block element */
+  margin-top: 10px; /* Add margin to separate from other content */
+}
+
+.popup a:hover {
+  /* Hover effect for the button */
+  background-color: #0056b3; /* Change color on hover */
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px; /* Add margin to separate from other content */
+}
+
+.imdb-button {
+  /* Style for the IMDb link/button */
+  font-size: 14px;
+  color: #fff;
+  background-color: #007bff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.imdb-button:hover {
+  background-color: #0056b3;
+}
+.popup p span {
+  /* Style for the text before ":" */
+  color: #007bff; /* Change the color as needed */
+  font-weight: bold; /* Optionally, make it bold */
+  margin-right: 4px; /* Optionally, add some right margin */
+}
