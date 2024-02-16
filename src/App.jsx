@@ -67,7 +67,9 @@ const App = () => {
 
       {loading ? (
         <div className="loading empty">
-          <h2>Please wait...</h2>
+          {/* <h2>Please wait...</h2> */}
+          <div className="loading">
+            <iframe src="https://giphy.com/embed/L05HgB2h6qICDs5Sms" width="2%" height="2%" className="iframe" allowFullScreen></iframe></div>
         </div>
       ) : movies.length > 0 ? (
         <div className="container">
