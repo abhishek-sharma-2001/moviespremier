@@ -63,7 +63,7 @@ const MovieCard = ({ movie }) => {
               <span>Released:</span> {movie.Released}
             </p>
             <p>
-              <span>IMDb Rating:</span> {movie.imdbRating}
+              <span>IMDb Rating:</span> {movie.imdbRating}/10
             </p>
 
             <a
