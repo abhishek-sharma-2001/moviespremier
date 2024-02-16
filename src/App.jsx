@@ -8,28 +8,37 @@ const API_URL = "http://www.omdbapi.com?apikey=2e9b6f85";
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     searchMovies("Batman");
   }, []);
 
   const searchMovies = async (title) => {
-    const response = await fetch(`${API_URL}&s=${title}`);
-    const data = await response.json();
+    setLoading(true);
 
-    if (data.Search) {
-      // Fetch detailed information for each movie using IMDb ID
-      const detailedMovies = await Promise.all(
-        data.Search.map(async (movie) => {
-          const detailedResponse = await fetch(`${API_URL}&i=${movie.imdbID}`);
-          const detailedData = await detailedResponse.json();
-          return detailedData;
-        })
-      );
+    try {
+      const response = await fetch(`${API_URL}&s=${title}`);
+      const data = await response.json();
+      console.log(data);
 
-      setMovies(detailedMovies);
-    } else {
-      setMovies([]);
+      if (data.Search) {
+        // Fetch detailed information for each movie using IMDb ID
+        const detailedMovies = await Promise.all(
+          data.Search.map(async (movie) => {
+            const detailedResponse = await fetch(`${API_URL}&i=${movie.imdbID}`);
+            const detailedData = await detailedResponse.json();
+            return detailedData;
+          })
+        );
+
+        setMovies(detailedMovies);
+        setSearchTerm(""); // Clear the input field after searching
+      } else {
+        setMovies([]);
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -56,7 +65,11 @@ const App = () => {
         />
       </div>
 
-      {movies?.length > 0 ? (
+      {loading ? (
+        <div className="loading empty">
+          <h2>Please wait...</h2>
+        </div>
+      ) : movies.length > 0 ? (
         <div className="container">
           {movies.map((movie) => (
             <MovieCard key={movie.imdbID} movie={movie} />
