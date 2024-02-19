@@ -206,7 +206,12 @@ iframe{
     height: 20px;
   }
 }
-
+@media (max-width: 768px) {
+  .loading .iframe {
+    width: 20%; 
+    height: 20%;
+  }
+}
 @media screen and (max-width: 400px) {
   .app {
     padding: 4rem 1rem;
