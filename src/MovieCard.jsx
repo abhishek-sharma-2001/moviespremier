@@ -1,9 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 
 const MovieCard = ({ movie }) => {
   const [showPopup, setShowPopup] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (showPopup) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "auto";
+      }
+    };
 
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [showPopup]);
   const openPopup = () => {
     setShowPopup(true);
   };
