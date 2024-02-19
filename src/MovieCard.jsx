@@ -24,6 +24,7 @@ const MovieCard = ({ movie }) => {
 
   const closePopup = () => {
     setShowPopup(false);
+    document.body.style.overflow = "auto";
   };
 
   return (
